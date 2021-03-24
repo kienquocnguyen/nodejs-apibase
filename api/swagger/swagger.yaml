@@ -1,0 +1,747 @@
+swagger: "2.0"
+info: 
+  version: "1.0.0"
+  title: Vietnamese English Club API
+host: localhost:3000
+basePath: /
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /signup/participants:
+    post:
+      summary: Register a new participants.
+      description: An api for register a new participants.
+      parameters:
+        - in: formData
+          name: firstName
+          type: string
+          description: firstName for participants.
+          required: true
+        - in: formData
+          name: lastName
+          type: string
+          description: lastName for participants.
+          required: true
+        - in: formData
+          name: username
+          type: string
+          description: username for participants.
+          required: true
+        - in: formData
+          name: gender
+          type: string
+          description: gender for participants.
+          required: true
+        - in: formData
+          name: avatar
+          type: string
+          description: avatar for participants (size < 15mb).
+        - in: formData
+          name: phoneNumber
+          type: string
+          description: participants phone number.
+        - in: formData
+          name: facebook
+          type: string
+          description: participants facebook link.
+        - in: formData
+          name: email
+          type: string
+          description: participants email.
+          required: true
+        - in: formData
+          type: array
+          name: lgclub_visited
+          items:
+            type: object
+            properties:
+              lgclub_id:
+                type: string
+                description: english club id
+              lgclub_name:
+                type: string
+                description: english club name
+        - in: formData
+          name: user_lgclub_id
+          type: string
+          description: if user is an english club admin this is a lgclub_id where user is the owner
+        - in: formData
+          name: password
+          type: string
+          description: participants password
+          required: true
+        - in: formData
+          name: address
+          type: string
+          description: participants address
+        - in: formData
+          name: district
+          type: string
+          description: district where participants live
+        - in: formData
+          name: ward
+          type: string
+          description: ward where participants live
+        - in: formData
+          name: city
+          type: string
+          description: city where participants live
+        - in: formData
+          name: country
+          type: string
+          description: country where participants live
+      responses:
+        '200':    # status code
+          description: A JSON array of participants names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /signup/lgclubadmin:
+    post:
+      summary: API for signup a new language club admin.
+      description: API for signup a new language club admin, this api will call before API POST /languageclub.
+      parameters:
+        - in: formData
+          name: firstName
+          type: string
+          description: firstName for language club admin.
+          required: true
+        - in: formData
+          name: lastName
+          type: string
+          description: lastName for language club admin.
+          required: true
+        - in: formData
+          name: username
+          type: string
+          description: username for language club admin.
+        - in: formData
+          name: gender
+          type: string
+          description: gender for language club admin.
+          required: true
+        - in: formData
+          name: avatar
+          type: string
+          description: avatar for admin (size < 15mb).
+          required: true
+        - in: formData
+          name: avatar
+          type: string
+          description: avatar for language club admin.
+        - in: formData
+          name: dialCode
+          type: string
+          description: language club admin dial code.
+        - in: formData
+          name: phoneNumber
+          type: string
+          description: language club admin phone number.
+        - in: formData
+          name: facebook
+          type: string
+          description: language club admin facebook link.
+        - in: formData
+          name: email
+          type: string
+          description: language club admin email.
+          required: true
+        - in: formData
+          name: password
+          type: string
+          description: language club admin password
+          required: true
+        - in: formData
+          name: address
+          type: string
+          description: language club admin address
+        - in: formData
+          name: district
+          type: string
+          description: district where language club admin live
+        - in: formData
+          name: ward
+          type: string
+          description: ward where language club admin live
+        - in: formData
+          name: city
+          type: string
+          description: city where language club admin live
+        - in: formData
+          name: country
+          type: string
+          description: country where language club admin live
+      responses:
+        '200':    # status code
+          description: A JSON array of language club admin names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /users/update:
+    put:
+      summary: Update user info.
+      description: An api for user to update their infomation (Auth).
+      parameters:
+        - in: formData
+          name: firstName
+          type: string
+          description: firstName for participants.
+        - in: formData
+          name: lastName
+          type: string
+          description: lastName for participants.
+        - in: formData
+          name: username
+          type: string
+          description: username for participants.
+        - in: formData
+          name: avatar
+          type: string
+          description: avatar for participants (size < 15mb).
+        - in: formData
+          name: gender
+          type: string
+          description: participants gender.
+        - in: formData
+          name: phoneNumber
+          type: string
+          description: participants phone number.
+        - in: formData
+          name: facebook
+          type: string
+          description: participants facebook link.
+        - in: formData
+          name: email
+          type: string
+          description: participants email.
+        - in: formData
+          type: array
+          name: lgclub_visited
+          items:
+            type: object
+            properties:
+              lgclub_id:
+                type: string
+                description: english club id
+              lgclub_name:
+                type: string
+                description: english club name
+        - in: formData
+          name: user_lgclub_id
+          type: string
+          description: if user is an english club admin this is a lgclub_id where user is the owner
+        - in: formData
+          name: password
+          type: string
+          description: participants password
+        - in: formData
+          name: address
+          type: string
+          description: participants address
+        - in: formData
+          name: district
+          type: string
+          description: district where participants live
+        - in: formData
+          name: ward
+          type: string
+          description: ward where participants live
+        - in: formData
+          name: city
+          type: string
+          description: city where participants live
+        - in: formData
+          country: country
+          type: string
+          description: country where participants live
+      responses:
+        '200':    # status code
+          description: A JSON array of participants names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+
+  /users/loggedin:
+    get:
+      summary: Get current user.
+      description: An api to get user infomation (Auth).
+      security:
+        - bearerAuth: []
+      responses:
+        '200':    # status code
+          description: A JSON array of participants names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /languageclub:
+    post:
+      summary: API for create a new language club (must be "lgclubadmin" role).
+      description: API for create a new language club (must be "lgclubadmin" role), this api will call after API POST /signup/lgclubadmin (Auth).
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: formData
+          name: name
+          type: string
+          description: name for language club.
+          required: true
+        - in: formData
+          name: description
+          type: string
+          description: description for language club.
+          required: true
+        - in: formData
+          name: phoneNumber
+          type: string
+          description: phoneNumber for language club.
+          required: true
+        - in: formData
+          name: email
+          type: string
+          description: email for language club.
+        - in: formData
+          name: phoneNumber
+          type: string
+          description: language club phone number.
+        - in: formData
+          type: array
+          name: branch
+          items:
+            type: object
+            properties:
+              branch_name:
+                type: string
+                description: language club branch_name
+              address:
+                type: string
+                description: language club branch address
+              district:
+                type: string
+                description: language club branch district
+              ward:
+                type: string
+                description: language club branch ward
+              city:
+                type: string
+                description: language club branch city
+              zipCode:
+                type: string
+                description: language club branch zipCode
+              country:
+                type: string
+                description: language club branch country
+              facebook:
+                type: string
+                description: language club branch facebook link
+      responses:
+        '200':    # status code
+          description: A JSON array of language club admin names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /events:
+    post:
+      summary: API for create a new event (must be "lgclubadmin" role).
+      description: API for create a new event of a language club.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: formData
+          name: authorId
+          type: string
+          description: id of the language club owner.
+          required: true
+        - in: formData
+          name: lgclub_id
+          type: string
+          description: id of the language club.
+        - in: formData
+          name: title
+          type: string
+          description: title of the event.
+          required: true
+        - in: formData
+          name: description
+          type: string
+          description: event description.
+          required: true
+        - in: formData
+          name: authorAvatar
+          type: string
+          description: avatar of the event author.
+        - in: formData
+          name: avatar
+          type: string
+          description: avatar of the event.
+        - in: formData
+          name: type
+          type: string
+          description: type of the event (weekly, daily, special).
+          required: true
+        - in: formData
+          name: address
+          type: string
+          description: address of the event.
+          required: true
+        - in: formData
+          name: ward
+          type: string
+          description: ward of the event.
+          required: true
+        - in: formData
+          name: district
+          type: string
+          description: district of the event.
+          required: true
+        - in: formData
+          name: city
+          type: string
+          description: city of the event.
+          required: true
+        - in: formData
+          name: zipCode
+          type: string
+          description: zipCode of the event.
+        - in: formData
+          name: country
+          type: string
+          description: country of the event.
+          required: true
+        - in: formData
+          name: day_off
+          type: string
+          description: day_off of the event (if this is an daily event).
+        - in: formData
+          name: startDate
+          type: string
+          description: startDate of the event.
+          required: true
+        - in: formData
+          name: expiredDate
+          type: string
+          description: expiredDate of the event.
+          required: true
+      responses:
+        '200':    # status code
+          description: A JSON array of events
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /events/[parameter]:
+    get:
+      summary: Get list of events.
+      description: An api to get list of all events sort by highest totalParticipants.
+      parameters:
+        - in: formData
+          name: page
+          type: number
+          description: page number of event list.
+        - in: formData
+          name: limit
+          type: string
+          description: how many item display on a page.
+        - in: formData
+          name: country
+          type: string
+          description: country which orgranize those events.
+        - in: formData
+          name: city
+          type: string
+          description: city which orgranize those events.
+        - in: formData
+          name: district
+          type: string
+          description: district which orgranize those events.
+        - in: formData
+          name: startDate
+          type: string
+          description: the date which start those events.
+      responses:
+        '200':    # status code
+          description: A JSON array of events list
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type:
+        '404':    # status code
+          description: Cannot find the event which match your searching
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type:  
+  /events/:eventId:
+    get:
+      summary: Get event detail.
+      description: An api to get detail of an event
+      responses:
+        '200':    # status code
+          description: A JSON object which show detain of a event.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /events/:permalink:
+    get:
+      summary: Get event detail by permalink.
+      description: An api to get detail of an event
+      responses:
+        '200':    # status code
+          description: A JSON object which show detain of a event.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /eventComments:
+    post:
+      summary: API for create a comment for a specific event.
+      description: API for create a comment for a specific event.
+      parameters:
+        - in: formData
+          name: userId
+          type: string
+          description: The userId of who submit this comment.
+          required: true
+        - in: formData
+          name: event_id
+          type: string
+          description: The event_id of this event.
+          required: true
+        - in: formData
+          name: userAvatar
+          type: string
+          description: The avatar of who submit this comment.
+        - in: formData
+          name: content
+          type: string
+          description: content for this comment.
+          required: true
+      responses:
+        '200':    # status code
+          description: A JSON body of this comment
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /event/eventComments:
+    get:
+      summary: Get a list of comments of a specific event.
+      description: An api to get a list of comments of a specific event.
+      parameters:
+        - in: formData
+          name: eventId
+          type: string
+          description: The eventId of this event.
+          required: true
+        - in: formData
+          name: page
+          type: string
+          description: The page of this comments.
+          required: true
+        - in: formData
+          name: userAvatar
+          type: string
+          description: The avatar of who submit this comment.
+        - in: formData
+          name: content
+          type: string
+          description: content for this comment.
+      responses:
+        '200':    # status code
+          description: A JSON object of a list event comments.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /eventLike:
+    post:
+      summary: API for user to like a event (Auth).
+      description: API for user to like a event (Auth).
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: formData
+          name: event_id
+          type: string
+          description: The event_id of event which user like.
+          required: true
+        - in: formData
+          name: event_title
+          type: string
+          description: The event_title of event which user like.
+          required: true
+      responses:
+        '200':    # status code
+          description: A JSON object of event like.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /eventLike/delete/:likeId:
+    delete:
+      summary: API for user to dislike a event (Auth).
+      description: API for user to dislike a event (Auth).
+      security:
+        - bearerAuth: []
+      responses:
+        '200':    # status code
+          description: A JSON object of event like.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /eventParticipation:
+    post:
+      summary: API for user to participate a event (Auth).
+      description: API for user to participate a event (Auth).
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: formData
+          name: event_id
+          type: string
+          description: The event_id of event which user participate.
+          required: true
+        - in: formData
+          name: event_title
+          type: string
+          description: The event_title of event which user participate.
+          required: true
+      responses:
+        '200':    # status code
+          description: A JSON object of event participation.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /eventParticipation/cancel:
+    put:
+      summary: API for user to participate a event (Auth).
+      description: API for user to participate a event (Auth).
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: formData
+          name: event_id
+          type: string
+          description: The event_id of event which user participate.
+          required: true
+        - in: formData
+          name: cancelReason
+          type: string
+          description: The reason why user cancel.
+          required: true
+      responses:
+        '200':    # status code
+          description: A JSON object of event participation.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /event/eventParticipation:
+    get:
+      summary: Get a list of event participation of a specific event.
+      description: Get a list of event participation of a specific event.
+      parameters:
+        - in: formData
+          name: page
+          type: string
+          description: The page of this array.
+        - in: formData
+          name: limit
+          type: string
+          description: The page limit.
+        - in: formData
+          name: eventId
+          type: string
+          description: The id of event which user participate.
+        - in: formData
+          name: checkinStatus
+          type: string
+          description: The checkin status of user (true, false, cancel).
+      responses:
+        '200':    # status code
+          description: A JSON object of a list event comments.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /event/user/eventParticipation:
+    get:
+      summary: Get a list of event participation of a specific event and from specific user.
+      description: Get a list of event participation of a specific event and from specific user.
+      parameters:
+        - in: formData
+          name: page
+          type: string
+          description: The page of this array.
+        - in: formData
+          name: limit
+          type: string
+          description: The page limit.
+        - in: formData
+          name: eventId
+          type: string
+          description: The id of event which user participate.
+        - in: formData
+          name: userId
+          type: string
+          description: The id of user who participate in those event.
+        - in: formData
+          name: checkinStatus
+          type: string
+          description: The checkin status of user (true, false, cancel).
+      responses:
+        '200':    # status code
+          description: A JSON object of a list event comments.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  
